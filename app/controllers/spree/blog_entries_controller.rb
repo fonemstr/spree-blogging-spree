@@ -1,4 +1,4 @@
-class Spree::BlogEntriesController < Spree::BaseController
+class Spree::BlogEntriesController < Spree::StoreController
 
   before_filter :load_news_archive_data   
   
