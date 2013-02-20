@@ -1,6 +1,14 @@
-<h1>New Blog Entry</h1>
+<% content_for :page_title do %>
+  <%= t('new_blog_entries') %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li id="new_blogging_link"> 
+    <%= button_link_to t(:back_to_blog_entries), collection_url, :icon => 'icon-arrow-left' %>
+  </li>
+<% end %>
 
 <%= form_for([:admin, @blog_entry], :html => { :multipart => true }) do |f| %>
   <%= render :partial => f %>
-  <%= render :partial => 'admin/shared/new_resource_links' %>
+  <%= render :partial => 'spree/admin/shared/new_resource_links' %>
 <% end %>

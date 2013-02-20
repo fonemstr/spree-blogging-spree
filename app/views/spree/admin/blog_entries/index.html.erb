@@ -1,36 +1,41 @@
-<div class='toolbar'>
-  <ul class='actions'>
-    <li>
-      <%= button_link_to t("new_entry"), new_object_url, :icon => 'add' %></p>
-    </li>
-  </ul>
-  <br class='clear' />
-</div>
+<% content_for :page_title do %>
+  <%= t('blog_entries') %>
+<% end %>
 
-<h1><%= t('blog_entries') %></h1>
-
+<% content_for :page_actions do %>
+  <li id="new_blogging_link"> 
+        <%= button_link_to t(:new_entry), new_object_url, :icon => 'icon-plus' %>
+  </li>
+<% end %>
 
 <% unless @blog_entries.blank? %>
   <table class="entry-list index">
-    <tr>
-      <th class="date">Date</th>
-      <th class="title">Title</th>
-      <th></th> 
-    </tr>
-
-  <% @blog_entries.each do |blog_entry| %>
-    <tr id="<%= dom_id blog_entry %>">
-      <td><%= l( blog_entry.created_at.to_date, :format => :long) %></td>
-      <td><%= blog_entry.title %></td>
-      <td class="actions">
-        <%= link_to_edit blog_entry %>
-        &nbsp;
-        <%= link_to_delete blog_entry, :title => t('are_you_sure_blog_entry') %>
-      </td>
-    </tr>
+    <colgroup>
+      <col style="width: 20%">
+      <col style="width: 70%">
+      <col style="width: 10%">
+    </colgroup>
+    <thead>
+     <tr>
+        <th class="date">Date</th>
+        <th class="title">Title</th>
+        <th class="actions"></th> 
+      </tr>
+    </thead>
+    <tbody>
+    <% @blog_entries.each do |blog_entry| %>
+     <tr class="<%= cycle('odd', 'even') %>" id="<%= dom_id blog_entry %>">
+        <td><%= l( blog_entry.created_at.to_date, :format => :long) %></td>
+        <td><%= blog_entry.title %></td>
+        <td class="actions">
+          <%= link_to_edit blog_entry, :no_text => true %>
+          <%= link_to_delete blog_entry, :no_text => true %>
+        </td>
+      </tr>
   <% end %>
+    </tbody>
+  </table>
 <% else %>
   <p><%= t('no_blog_entries') %></p>
 <% end %>
-
-</table>
+  

@@ -8,10 +8,13 @@ class Spree::BlogEntry < ActiveRecord::Base
   default_scope :order => "created_at DESC"    
   scope :recent, limit(5)
 
+  attr_accessible :title, :body, :tag_list, :kind, :name
+
   has_one :blog_entry_image, :as => :viewable, :dependent => :destroy
 
-  accepts_nested_attributes_for :blog_entry_image#, :reject_if => lambda { |image| image[:attachment].blank? }
-
+  accepts_nested_attributes_for :blog_entry_image #, :reject_if => lambda { |image| image[:attachment].blank? }
+  accepts_nested_attributes_for :tags
+  
   def self.by_date(date, period = nil)
     if date.is_a?(Hash)
       keys = [:day, :month, :year].select {|key| date.include?(key) }
