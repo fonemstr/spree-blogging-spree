@@ -6,7 +6,7 @@ Spree::Core::Engine.routes.prepend do
   resources :blog_entries
 
   get 'blog/tag/:tag', :to => 'blog_entries#tag' #, :as => :tag
-  get 'blog/:year/:month/:day/:slug', :to => 'blog_entries#show', :as => :blog_entry_permalink
-  get 'blog/:year(/:month)(/:day)', :to => 'blog_entries#archive', :as => :blog_news_archive,
+  get 'blog/:year/:month/:day/:slug', :to => 'blog_entries#show' #, :as => :blog_entry_permalink
+  get 'blog/:year(/:month)(/:day)', :to => 'blog_entries#archive' #, :as => :blog_news_archive,
     :constraints => {:year => /(19|20)\d{2}/, :month => /[01]?\d/, :day => /[0-3]?\d/}
 end
