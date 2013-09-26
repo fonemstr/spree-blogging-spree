@@ -8,7 +8,7 @@ class Spree::BlogEntry < ActiveRecord::Base
   default_scope :order => "created_at DESC"    
   scope :recent, limit(5)
 
-  attr_accessible :title, :body, :tag_list
+  #attr_accessible :title, :body, :tag_list
 
   has_one :blog_entry_image, :as => :viewable, :dependent => :destroy
 
