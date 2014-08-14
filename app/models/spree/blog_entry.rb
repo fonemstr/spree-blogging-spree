@@ -5,7 +5,7 @@ class Spree::BlogEntry < ActiveRecord::Base
   is_taggable :tags
   before_save :create_permalink
   validates_presence_of :title
-  default_scope :order => "created_at DESC"    
+  default_scope { order('created_at DESC') }  
   scope :recent, limit(5)
 
   #attr_accessible :title, :body, :tag_list
