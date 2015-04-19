@@ -1,0 +1,5 @@
+<% if can? :admin, Spree::BlogEntry %>
+    <ul class="nav nav-sidebar">
+    <%= tab Spree::BlogEntry, url: spree.admin_blog_entries_url, icon: 'comment', label: plural_resource_name(Spree::BlogEntry)%>
+  </ul>
+<% end %>
